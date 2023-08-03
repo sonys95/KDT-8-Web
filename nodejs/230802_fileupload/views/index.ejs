@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <h1>FORM 싱글 연습</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="userfile" /><br />
+      <input type="text" name="title" /><br />
+      <button type="submit">업로드</button>
+    </form>
+    <h1>FORM 멀티 연습(ver1)</h1>
+    <form action="/upload/array" method="post" enctype="multipart/form-data">
+      <input type="file" name="userfiles" multiple /><br />
+      <input type="text" name="title" /><br />
+      <button type="submit">업로드</button>
+    </form>
+    <h1>FORM 멀티 연습(ver2)</h1>
+    <form action="/upload/fields" method="post" enctype="multipart/form-data">
+      <input type="file" name="userfile1" /> <br />
+      <input type="text" name="title1" /><br />
+      <input type="file" name="userfile2" /><br />
+      <input type="text" name="title2" /><br />
+      <button type="submit">업로드</button>
+    </form>
+
+    <h1>동적 파일 업로드</h1>
+    <input type="file" name="dynamic-userfile" id="dynamic-file" /><br />
+    <button type="button" onclick="fileupload()">업로드</button>
+    <br />
+    <div class="result"></div>
+    <script>
+      const resultBox = document.querySelector(".result");
+      function fileupload() {
+        const file = document.getElementById("dynamic-file");
+        console.log(file.files[0]);
+        const formData = new FormData();
+        formData.append("dynamic-userfile", file.files[0]);
+
+        axios({
+          method: "POST",
+          url: "/dynamicFile",
+          data: formData,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }).then((res) => {
+          console.log("res", res);
+          resultBox.innerHTML = `<div><img src=${res.data.path}></div>`;
+        });
+      }
+    </script> -->
+    <h1>개인 정보</h1>
+    <form name="register2">
+      <label for="id">아이디 : </label>
+      <input type="text" name="id" id="id" /><br />
+      <label for="pw">비밀번호 : </label>
+      <input type="text" name="pw" id="pw" /><br />
+      <label for="name">이름 : </label>
+      <input type="text" name="name" id="name" /><br />
+      <label for="age">나이 : </label>
+      <input type="text" name="age" id="age" /><br />
+      <!--  <label for="profile">프로필 사진 : </label> -->
+      <!-- <input type="file" name="profile" id="profile" /><br /> -->
+      <button type="button" onclick="register1()">회원가입</button>
+    </form>
+    <div class="result"></div>
+    <script>
+      const resultBox = document.querySelector(".result");
+
+      function register1() {
+        console.log("post");
+        const form = document.forms["register2"];
+        const data = {
+          id: form.id.value,
+          pw: form.pw.value,
+          name: form.name.value,
+          age: form.age.value,
+        };
+        console.log(data);
+        axios({
+          method: "POST",
+          url: "/register",
+          data,
+        }).then((res) => {
+          console.log(res.data);
+          const userInfo = res.data;
+          resultBox.textContent = `이름 : ${userInfo.id}, 비번 : ${userInfo.pw}, 이름 : ${userInfo.name}, 나이 : ${userInfo.age}`;
+        });
+      }
+    </script>
+  </body>
+</html>

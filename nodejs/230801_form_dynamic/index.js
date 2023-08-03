@@ -10,8 +10,12 @@ app.set("views", "./views");
 
 //router
 app.get("/", (req, res) => {
-  res.render("register");
+  res.render("login");
 });
+app.get("/axiosGet", (req, res) => {
+  res.render("get");
+});
+
 //ajax
 app.get("/ajax", (req, res) => {
   console.log(req.query);
@@ -21,6 +25,7 @@ app.post("/ajax", (req, res) => {
   console.log(req.body);
   res.send(req.body);
 });
+
 //axios
 app.get("/axios", (req, res) => {
   console.log("back", req.query);
@@ -30,6 +35,7 @@ app.post("/axios", (req, res) => {
   console.log("back", req.body);
   res.send(req.body);
 });
+
 //fetch
 app.get("/fetch", (req, res) => {
   console.log("back", req.query);

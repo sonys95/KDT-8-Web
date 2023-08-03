@@ -19,13 +19,15 @@
         <input type="text" id="id" /><br />
         비번 :
         <input type="text" id="pw" />
+        <button type="button" onclick="axiosPost()">axios get 제출</button
+        ><br />
       </fieldset>
     </form>
     <div class="result"></div>
   </body>
   <script>
     const resultBox = document.querySelector(".result");
-     function axiosPost() {
+    function axiosPost() {
       console.log("axios post");
       const form = document.forms["login"];
       const data = {
@@ -36,12 +38,19 @@
         method: "POST",
         url: "/axios",
         data: data,
-      }).then((res),{
-       if(id === "as"){
-        console.log("right")
-       }
       })
-
+        .then((res) => {
+          console.log(res);
+          if (res.data.message === "as") {
+            resultBox.textContent = "로그인 성공!";
+          } else {
+            resultBox.textContent = "아이디가 틀렸습니다.";
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          resultBox.textContent = "서버 오류가 발생했습니다.";
+        });
     }
   </script>
 </html>
