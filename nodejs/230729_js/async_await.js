@@ -12,7 +12,7 @@ let price;
 exec();
 
 function goMart() {
-  console.log("마트에 와서 어떤 음료 마실까??");
+  console.log("마트에 와서 어떤 음료 마f실까??");
 }
 
 function pickDrink(callback) {
