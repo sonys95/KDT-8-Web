@@ -15,36 +15,36 @@ conn.connect((err) => {
   console.log("connect");
 });
 
-//유저정보 조회
-exports.postUserinfo = (id, pw, callback) => {
-  console.log("아이디 조회");
-  console.log("모델확인" + id);
-  console.log("모델확인" + pw);
-  const query = `SELECT * FROM user WHERE id = ?`;
-  conn.query(query, [id], (err, rows) => {
-    if (err) {
-      console.error("Error while querying user:", err);
-      callback(false); // 로그인 실패
-      return;
-    }
+// //유저정보 조회
+// exports.postUserinfo = (id, pw, callback) => {
+//   console.log("아이디 조회");
+//   console.log("모델확인" + id);
+//   console.log("모델확인" + pw);
+//   const query = `SELECT * FROM user WHERE id = ?`;
+//   conn.query(query, [id], (err, rows) => {
+//     if (err) {
+//       console.error("Error while querying user:", err);
+//       callback(false); // 로그인 실패
+//       return;
+//     }
 
-    if (rows.length === 0) {
-      console.log("User not found");
-      callback(false); // 로그인 실패: 아이디가 존재하지 않음
-      return;
-    }
+//     if (rows.length === 0) {
+//       console.log("User not found");
+//       callback(false); // 로그인 실패: 아이디가 존재하지 않음
+//       return;
+//     }
 
-    const user = rows[0];
-    if (user.pw !== pw) {
-      console.log("Incorrect password");
-      callback(false); // 로그인 실패: 비밀번호 불일치
-      return;
-    }
+//     const user = rows[0];
+//     if (user.pw !== pw) {
+//       console.log("Incorrect password");
+//       callback(false); // 로그인 실패: 비밀번호 불일치
+//       return;
+//     }
 
-    console.log("User logged in:", user);
-    callback(true, user); // 로그인 성공
-  });
-};
+//     console.log("User logged in:", user);
+//     callback(true, user); // 로그인 성공
+//   });
+// };
 //회원가입
 exports.postRegister = (data, callback) => {
   console.log("모델단 회원가입");
@@ -52,5 +52,24 @@ exports.postRegister = (data, callback) => {
   conn.query(query, (err, ss) => {
     console.log("회원등록", ss);
     callback(ss);
+  });
+};
+//수정
+exports.post_profile = (data, callback) => {
+  const query = `SELECT * FROM user WHERE userid='${data.profile}'`;
+  conn.query(query, (err, rows) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    console.log("post_profile", rows);
+    callback(rows);
+  });
+};
+
+exports.edit_profile = (data, callback) => {
+  const query = `UPDATE user SET userid='${data.id}', pw='${data.pw}' WHERE id=${data.id}`;
+  conn.query(query, (err, rows) => {
+    callback();
   });
 };

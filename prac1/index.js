@@ -6,9 +6,16 @@ app.set("view engine", "ejs");
 app.set("views", "./views");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use("/static", express.static(__dirname + "/static"));
 
-const router = require("./routes/user");
-app.use("/user", router);
+//router
+const userRouter = require("./routes/user");
+app.use("/", userRouter);
+
+//404
+app.use("*", (req, res) => {
+  res.render("404");
+});
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
