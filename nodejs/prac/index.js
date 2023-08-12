@@ -1,42 +1,46 @@
 const express = require("express");
+const multer = require("multer"); // multer 불러오기
+const path = require("path");
 const app = express();
 const PORT = 8000;
 
-//body-parser
+// 이미지 업로드를 위한 multer 설정
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads"); // 이미지를 uploads 폴더에 저장
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(
+      null,
+      file.fieldname + "-" + uniqueSuffix + path.extname(file.originalname)
+    );
+  },
+});
+
+const upload = multer({ storage });
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 //view engine
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
-//router
 app.get("/", (req, res) => {
   res.render("index");
 });
-//get실습
-app.get("/axiosGet", (req, res) => {
-  res.render("get");
-});
-app.get("/resultGet", (req, res) => {
-  console.log(req.query);
-  res.send({ result: true, data: req.query });
-});
-//post실습
-app.get("/axiosPost", (req, res) => {
-  res.render("post");
-});
-app.post("/resultPost", (req, res) => {
+
+app.post("/register", upload.single("profile"), (req, res) => {
   console.log(req.body);
-  const id = "kdt8";
-  const pw = "1234";
-  if (id === req.body.username && pw === req.body.password) {
-    res.send({ result: true, userInfo: req.body });
-  } else {
-    res.send({ result: false });
-  }
+  console.log("file", req.file);
+  const responseData = {
+    ...req.body,
+    profile: req.file ? req.file.path : null, // 파일이 있으면 파일 경로를 저장, 없으면 null
+  };
+  res.send(responseData);
 });
 
-//server start
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
 });
