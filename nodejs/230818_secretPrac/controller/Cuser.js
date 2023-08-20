@@ -47,3 +47,11 @@ exports.postRegister = (req, res) => {
       res.status(500).send({ result: false, error: "Error creating user" });
     });
 };
+
+exports.postLogin = (req, res) => {
+  models.User.findOne({
+    where: { userid: req.body.userid, pw: req.body.pw },
+  }).then(() => {
+    res.send({ result: true, data: result });
+  });
+};
