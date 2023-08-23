@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <form onsubmit="login(event)">
+      <input type="text" id="userid" placeholder="ID" /><br />
+      <input type="password" id="pw" placeholder="PW" /><br />
+      <button type="submit">로그인</button>
+    </form>
+    <div class="result1"></div>
+
+    <script>
+      const resultBox = document.querySelector(".result1");
+      function login(e) {
+        e.preventDefault(); //기본 제출 멈춤
+
+        axios({
+          method: "POST",
+          url: "/signin",
+          data: {
+            userid: document.querySelector("#userid").value,
+            pw: document.querySelector("#pw").value,
+          },
+        }).then((res) => {
+          if (res.data.result) {
+            alert(`${res.data.data.name}님 로그인 성공`);
+            resultBox.innerHTML = `<h1>회원정보<h1><br>회원 아이디 : <input type="text" id="newid" value = "${res.data.data.userid} ">, 회원 이름 : <input type="text" id="newpw" value = "${res.data.data.name}"><br>
+            <button type="button" onclick="edit()">회원정보 수정하기</button><br>
+      
+            
+            `;
+          } else {
+            alert("로그인 실패");
+            document.location.reload();
+          }
+        });
+      }
+
+      function edit() {
+        console.log("성공");
+      }
+    </script>
+  </body>
+</html>
