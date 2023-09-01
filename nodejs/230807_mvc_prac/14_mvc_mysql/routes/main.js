@@ -13,7 +13,10 @@ router.post("/signin", controller.post_signin); //로그인하기
 
 //회원정보 조회
 //조회
+//GET 조회 방식일때는 URL 을 query string 또는 파라미터 방식으로 지정
+router.get("/profile/:init", controller.profile);
+
 //수정
-router.post("/edit", controller.edit);
+// router.patch("profile/edit", controller.edit_profile);
 
 module.exports = router;

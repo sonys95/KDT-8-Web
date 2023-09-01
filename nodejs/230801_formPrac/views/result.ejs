@@ -7,10 +7,14 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <ul>
+    <!-- <ul>
       <li>이름: <%= userInfo.username %></li>
       <li>성별: <%= userInfo.gender %></li>
       <li>생일: <%= userInfo.birthYear %></li>
-    </ul>
+    </ul> -->
+    <div><span> <%= userInfo.id %></span> 님 환영합니다</div>
+    <div>비밀번호는 <span> <%= userInfo.pw %></span> 이군여</div>
+    <br /><br />
+    <a href="/">홈으로 이동</a>
   </body>
 </html>

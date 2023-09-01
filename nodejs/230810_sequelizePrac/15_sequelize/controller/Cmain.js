@@ -1,5 +1,6 @@
 // const model = require('../model/Model');
 const { User } = require("../models");
+const bcrypt = require("bcrypt");
 
 ///////////////////////////////////////
 //GET
@@ -33,23 +34,24 @@ const buy = () => {};
 ////////////////////////////////////////////////
 //POST
 //회원가입
-const post_signup = (req, res) => {
+const post_signup = async (req, res) => {
   // model.db_signup(req.body, () => {
   //     res.json({ result: true });
   // });
   const { userid, name, pw } = req.body;
   //create 데이터 생성
   //실습과제 - 비밀번호 암호화하여 저장
+  const hash = await bcryptPassword(pw);
   User.create({
     userid,
     name,
-    pw,
+    pw: hash,
   }).then(() => {
     res.json({ result: true });
   });
 };
 
-const post_signin = (req, res) => {
+const post_signin = async (req, res) => {
   // model.db_signin(req.body, (result) => {
   //     if (result.length > 0) {
   //         res.json({ result: true, data: result[0] });
@@ -59,15 +61,27 @@ const post_signin = (req, res) => {
   // });
   //실습과제 - 로그인
   //step1 아이디를 찾아서 사용자 존재 유/무 체크
-  const { userid } = req.body;
+  const { userid, pw } = req.body;
 
-  User.findOne({
-    where: { userid },
-  }).then(() => {
-    res.json({ result: true, data: result });
+  const user = await User.findOne({
+    where: { userid: userid },
   });
-
-  //step2 입력된 비밀번호 암호화하여 기존 데이터와 비교
+  if (user) {
+    //step2 입력된 비밀번호 암호화하여 기존 데이터와 비교
+    //사용자가 존재
+    const result = await compareFunc(pw, user.pw);
+    console.log(result);
+    if (result) {
+      //비밀번호 일치
+      res.json({ result: true, data: user });
+    } else {
+      //비밀번호 불일치
+      res.json({ result: false, message: "비밀번호가 틀렸습니다" });
+    }
+  } else {
+    //사용자가 존재하지 않음
+    res.json({ result: false, message: "존재하는 사용자가 없습니다" });
+  }
 };
 ///////////////////////////////////////////
 //PATCH
@@ -85,6 +99,14 @@ const edit_profile = (req, res) => {
 /////////////////////////////////////////////
 //DELETE
 //회원탈퇴 destory()
+const destroy = (req, res) => {
+  const { id } = req.body;
+  User.destroy({
+    where: { id },
+  }).then(() => {
+    res.json({ result: true });
+  });
+};
 
 module.exports = {
   main,
@@ -95,4 +117,12 @@ module.exports = {
   post_signup,
   post_signin,
   edit_profile,
+  destroy,
 };
+
+//////////////////////////////////////////////
+
+//암호화
+const bcryptPassword = (password) => bcrypt.hash(password, 11);
+//비교
+const compareFunc = (password, dbpass) => bcrypt.compare(password, dbpass);

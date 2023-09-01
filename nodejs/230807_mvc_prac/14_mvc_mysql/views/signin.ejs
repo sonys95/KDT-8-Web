@@ -29,11 +29,7 @@
         }).then((res) => {
           if (res.data.result) {
             alert(`${res.data.data.name}님 로그인 성공`);
-            resultBox.innerHTML = `<h1>회원정보<h1><br>회원 아이디 : <input type="text" id="newid" value = "${res.data.data.userid} ">, 회원 이름 : <input type="text" id="newpw" value = "${res.data.data.name}"><br>
-            <button type="button" onclick="edit()">회원정보 수정하기</button><br>
-      
-            
-            `;
+            document.location.href = `/profile/${res.data.id}`;
           } else {
             alert("로그인 실패");
             document.location.reload();
@@ -43,6 +39,21 @@
 
       function edit() {
         console.log("성공");
+        axios({
+          method: "POST",
+          url: "/edit",
+          data: {
+            userid: document.querySelector("#newid").value,
+            pw: document.querySelector("#newpw").value,
+          },
+        }).then((res) => {
+          if (res.data.result) {
+            alert(`${res.data.data.name}님 수정 성공`);
+          } else {
+            alert("수정 실패");
+            document.location.reload();
+          }
+        });
       }
     </script>
   </body>

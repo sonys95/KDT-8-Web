@@ -29,31 +29,31 @@ const users = [
     id: 1,
     name: "son",
     gender: "M",
-    major: "sports",
+    major: "스포츠학과",
   },
   {
     id: 2,
     name: "kim",
     gender: "W",
-    major: "Eng",
+    major: "영문학과",
   },
   {
     id: 3,
     name: "LEE",
     gender: "W",
-    major: "MEC",
+    major: "기계학과",
   },
   {
     id: 4,
     name: "KT",
     gender: "M",
-    major: "PHY",
+    major: "화학과",
   },
   {
     id: 5,
     name: "son",
     gender: "M",
-    major: "SYT",
+    major: "컴퓨터공학과",
   },
 ];
 

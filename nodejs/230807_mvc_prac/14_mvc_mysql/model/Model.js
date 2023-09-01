@@ -85,10 +85,36 @@ const db_signin = (data, cb) => {
   });
 };
 
+//사용자 정보 조회
+const db_profile = (data, cb) => {
+  const query = "SELECT * FROM user WHERE id = ? ";
+  conn.query(query, [data.init], (err, rows) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    console.log("db_profile", rows);
+    cb(rows);
+  });
+};
+//프로필 수정
+const db_profile_edit = (data) => {
+  const query = "update user set userid = ? , name = ? , pw = ? where id = ? ";
+  conn.query(query, [data.userid, data.name, data.pw, data.id], (err, rows) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    console.log("db_profile", rows);
+    cb(rows);
+  });
+};
+
 const query = "update user set  ";
 
 module.exports = {
   db_signup,
   db_signin,
-  db_edit,
+  db_profile,
+  db_profile_edit,
 };
