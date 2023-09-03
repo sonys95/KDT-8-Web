@@ -59,7 +59,7 @@ const post_signin = async (req, res) => {
   //         res.json({ result: false });
   //     }
   // });
-  //실습과제 - 로그인
+  //실습과제 - 로그인//
   //step1 아이디를 찾아서 사용자 존재 유/무 체크
   const { userid, pw } = req.body;
 
