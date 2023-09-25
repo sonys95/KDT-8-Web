@@ -1,0 +1,37 @@
+@import "./utils.scss";
+
+.SassComponent {
+  //중첩
+  .box {
+    // width: 100px;
+    // height: 100px;
+    border-radius: 50px;
+
+    width: 100px;
+    height: 100px;
+    background-color: red;
+
+    /* 1.animation 효과 */
+    animation-name: change;
+    animation-duration: 10s;
+    /* 5.반복 iteration-count */
+    animation-iteration-count: 5;
+    /* 3.애니메이션 끝에서 멈춰 */
+
+    /* 2.animation이 할일 @keyframes 이름 {} */
+
+    @include box(100px);
+    //&: 중첩 안에서 &키워드는 부모 선택자를 참조하여 치환
+    //.box.red 가 동일 (동일한 선상에 클래스가 같이 존재할때)
+
+    &.black {
+      background-color: black;
+    }
+    &.white {
+      background-color: yellow;
+    }
+    &.red {
+      background-color: $color-red;
+    }
+  }
+}

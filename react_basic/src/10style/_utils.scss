@@ -1,0 +1,31 @@
+//_utills.scss
+//Scss파일명앞에 _ 를 붙여서 작성하면 파일단위로 분리되어 컴파일 되지 않습니다.
+
+$color-red: #ff0000;
+$color-orange: orange;
+$color-yellow: yellow;
+$color-green: green;
+$color-blue: blue;
+$color-navy: navy;
+$color-purple: purple;
+
+@mixin box($size) {
+  width: $size;
+  height: $size;
+}
+@mixin box($size) {
+  @keyframes change {
+    /* 7.화면을 이동시키는 방향설정, 시계방향으로 normal */
+    0% {
+    }
+
+    50% {
+      margin: 0 0 100px 200px;
+    }
+
+    100% {
+    }
+  }
+  width: $size;
+  height: $size;
+}
