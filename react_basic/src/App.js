@@ -1,16 +1,16 @@
-import LifeCycleClass from "./08Lifecycle/LifeCycleClass";
-import LifeCycleFunc from "./08Lifecycle/LifeCycleFunc";
-import Style from "./10style/Style";
-import SassComponent from "./10style/SassComponent";
-import StyledComponent from "./10style/StyledComponent";
+import { Outlet } from "react-router-dom";
+import Header from "./12Router/Header";
+// import Router from "./Router";
 
 function App() {
   return (
     <>
-      {/* <LifeCycleClass /> */}
-      {/* <LifeCycleFunc /> */}
-      {/* <SassComponent /> */}
-      <StyledComponent></StyledComponent>
+      {/*  ver1
+      <Router></Router> 
+      */}
+      {/* ver2 */}
+      <Header></Header>
+      <Outlet></Outlet>
     </>
   );
 }
