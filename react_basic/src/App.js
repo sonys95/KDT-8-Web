@@ -1,18 +1,26 @@
-import { Outlet } from "react-router-dom";
-import Header from "./12Router/Header";
-import Form from "./13Form/Form";
-// import Router from "./Router";
+// import { useState } from "react";
+// import Form from "./13Form/Form";
+// import LanguageProvider from "./14Context/LangProvider";
+// import LanguageSelector from "./14Context/LangSelector";
+// import MyContext from "./14Context/store/lang-context";
+import ThemeContext from "./14Context/store/theme-context";
+import LangSelector from "./14Context/LangSelector";
+import ThemeSelector from "./14Context/ThemeSelector";
 
 function App() {
+  //const [language, setLanguage] = useState('ko');
   return (
     <>
-      {/*  ver1
-      <Router></Router> 
-      */}
-      {/* ver2 */}
-      {/* <Header></Header>
-      <Outlet></Outlet> */}
-      <Form></Form>
+      {/* <MyContext.Provider value={{ language, setLanguage }}>
+                <LanguageSelector />
+            </MyContext.Provider> */}
+      {/* <LanguageProvider>
+        <LanguageSelector />
+      </LanguageProvider> */}
+      <ThemeContext>
+        <LangSelector></LangSelector>
+        <ThemeSelector></ThemeSelector>
+      </ThemeContext>
     </>
   );
 }
