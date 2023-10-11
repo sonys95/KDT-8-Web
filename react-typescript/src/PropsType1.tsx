@@ -19,6 +19,9 @@ const PropsType1: React.FC<Props> = ({ name, age }) => {
       <h4>{age}</h4>
       <input ref={myInput} />
       <button onClick={handleFocus}>버튼</button>
+      <form action="">
+        <button>제출</button>
+      </form>
     </>
   );
 };
