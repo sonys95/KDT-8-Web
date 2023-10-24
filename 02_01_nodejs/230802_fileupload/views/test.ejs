@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <!-- <form action="/upload" method="POST" enctype="multipart/form-data">
+      <input type="file" name="userfile1" /><br />
+      <input type="text" name="title1" /><br />
+      <input type="file" name="userfile2" /><br />
+      <input type="text" name="title2" /><br />
+      <button type="submit">업로드</button>><br />
+    </form>
+
+    <h2>Multi File</h2>
+    <form action="/upload/array" method="POST" enctype="multipart/form-data">
+      <input type="file" name="userfiles" multiple /><br />
+      <input type="text" name="title" /><br />
+      <button type="submit">업로드</button>><br />
+    </form> -->
+
+    <h2>동적 팡리 업로드</h2>
+
+    <input type="file" name="dynamic-userfile" id="dynamic-file" /><br />
+
+    <button type="button" onclick="fileUpload()">업로드</button><br />
+    <img src="" width="100" />
+
+    <script>
+      function fileUpload() {
+        const formData = new FormData();
+        const file = document.getElementById("dynamic-file");
+        formData.append("dynamic-userfile", file.files[0]);
+        console.log("x");
+        axios({
+          method: "POST",
+          url: "/dynamicFile",
+          data: formData,
+          headers: {
+            "Content-Type": "nultipart/form-data",
+          },
+        }).then(function (response) {
+          console.log(response);
+          console.log(response.data);
+          console.log(response.data.path);
+          document.querySelector("img").src = response.data.path;
+        });
+      }
+    </script>
+  </body>
+</html>

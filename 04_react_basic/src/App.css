@@ -1,0 +1,36 @@
+.my_style {
+  background-color: aqua;
+  font-size: 40px;
+  color: orange;
+  padding: 12px;
+}
+style {
+  color: orange;
+  font-size: 40px;
+  margin-top: 20px;
+}
+.food {
+  color: red;
+}
+
+div {
+  width: 500px;
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.top {
+  margin: auto;
+}
+h1 {
+  margin: auto;
+}
+.title {
+  margin: auto;
+  color: orange;
+}
+img {
+  margin: auto;
+  width: 200px;
+}

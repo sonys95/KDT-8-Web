@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 function MyComponent() {
-  const [post, setPost] = useState([]);
   const fakePosts = [
     {
       id: 1,
@@ -55,33 +54,8 @@ function MyComponent() {
       body: "quo et expedita modi cum officia vel magni doloribus qui repudiandae vero nisi sit quos veniam quod sed accusamus veritatis error",
     },
   ];
-  useEffect(() => {
-    console.log("항상 실행");
-    const timer = setTimeout(() => {
-      setPost(fakePosts);
-    }, 2000);
-    // 컴포넌트가 언마운트될 때 타이머를 클리어해야 합니다.
-    return () => clearTimeout(timer);
-  }, []);
-  useEffect(() => {
-    console.log("state가 변경될때");
-    if (post.length === 0) {
-      alert("loading");
-    }
-  }, [post]);
-  return (
-    <>
-      {post.map((post) => (
-        <div className="post">
-          <div key={post.id}>
-            <div>{post.title}</div>
-            <div>{post.body}</div>
-          </div>
-        </div>
-      ))}
-    </>
-  );
 }
 export default function Prac1() {
-  return <>{<MyComponent />}</>;
+  const [post, setPost] = useState([]);
+  return <div className="posts"></div>;
 }

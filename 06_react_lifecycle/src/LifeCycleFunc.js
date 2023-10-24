@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 
-function MyComponent(props) {
-  const { number } = props;
+function MyComponent() {
+  //   const { number } = props;
   // const { text, setText } = useState("");
   const { post, setPost } = useState([]);
   const fakePosts = [

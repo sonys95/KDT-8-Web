@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>게시판</h1>
+    <fieldset>
+      <legend>게시판작성</legend>
+      <form id="total-form">
+        <input type="text" id="name" placeholder="이름" /><br />
+        <input type="text" id="comment" placeholder="내용" /><br />
+        <button type="button" onclick="registerCommnet();">등록</button>
+      </form>
+    </fieldset>
+    <script>
+      function registerCommnet() {
+        const form = document.forms["total-form"];
+        console.log("등록버튼실행");
+        axios({
+          method: "POST",
+          url: "/visitor/write",
+          data: {
+            name: form.name.value,
+            commnet: form.comment.value,
+          },
+        }).then((res) => {
+          console.log("res", res);
+        });
+      }
+    </script>
+  </body>
+</html>
