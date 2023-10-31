@@ -77,7 +77,7 @@ function Create(props) {
     </article>
   );
 }
-//테스트
+
 function Update(props) {
   const [title, setTitle] = useState(props.title);
   const [body, setBody] = useState(props.body);
