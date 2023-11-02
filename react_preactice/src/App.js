@@ -131,7 +131,7 @@ function App() {
   ]);
   let content = null;
   let contextControl = null;
-  if (mode === "WELCOME") {
+  if (mode === "WELCOME22") {
     content = <Article title="Welcome" body="Hello, WEB"></Article>;
   } else if (mode === "READ") {
     let title,
