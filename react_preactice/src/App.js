@@ -14,11 +14,6 @@ function Header(props) {
   return (
     <header>
       <h1>
-        {/* <a href="/" onclick="">
-
-      <a href="/" onClick={}>
- */}
-
         <a
           href="/"
           onClick={(event) => {
