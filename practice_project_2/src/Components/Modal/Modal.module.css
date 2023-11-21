@@ -1,0 +1,45 @@
+.modalBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    background-color: rgb(0, 0, 0, 0.5);
+}
+
+.modal {
+    width: 40vw;
+    margin: 30vh auto;
+    border: none;
+    border-radius: 1rem;
+    position: fixed;
+    top: 0;
+    left: 30vw;
+    z-index: 12
+}
+
+.modalTitle {
+    width: 100%;
+    background-color: rgb(55, 3, 71);
+    color: white;
+    padding: 1.5rem 1rem;
+    border-radius: 0.9rem 0.9rem 0 0;
+    margin: 0;
+}
+
+.content {
+    margin: 1.3rem 0;
+    padding: 0.5rem 1rem;
+}
+
+.content h3 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.action {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+}

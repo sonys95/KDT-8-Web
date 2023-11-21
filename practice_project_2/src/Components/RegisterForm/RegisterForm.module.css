@@ -1,0 +1,23 @@
+.registerForm {
+    margin: 2rem auto;
+    width: 40vw;
+    padding: 1rem;
+}
+
+.registerForm label {
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.registerForm input {
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 4px 5px;
+}
+
+.inputItem {
+    margin: 1rem auto;
+    display: flex;
+    flex-direction: column;
+}
