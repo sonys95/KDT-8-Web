@@ -38,7 +38,7 @@ function App() {
       <Todo text="master React" />
       <Todo text="explore the full React course" />
 
-      {/* ---------------------------------------- */}
+      {/* ------------------------------------------- */}
 
       <div className={Card.card}>
         <form className={RegisterForm.registerForm} onSubmit={addHandler}>
