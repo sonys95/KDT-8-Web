@@ -38,7 +38,7 @@ function App() {
       <Todo text="master React" />
       <Todo text="explore the full React course" />
 
-      {/* ------------------------------------------------- */}
+      {/* --------------------새롭게 시작할 내용----------------------------- */}
 
       <div className={Card.card}>
         <form className={RegisterForm.registerForm} onSubmit={addHandler}>
